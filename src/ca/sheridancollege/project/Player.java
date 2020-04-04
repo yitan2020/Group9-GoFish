@@ -17,9 +17,9 @@ public abstract class Player
      * A constructor that allows you to set the player's unique ID
      * @param name the unique ID to assign to this player.
      */
-    public Player(String name)
+    public Player(String playerID)
     {
-        playerID= name;
+        this.playerID= playerID;
     }
     
     /**

@@ -2,6 +2,7 @@
  * SYST 17796 Project Winter 2020 Base code.
  * Students can modify and extend to implement their game.
  * Add your name as a modifier and the date!
+ * Yi Tan
  */
 package ca.sheridancollege.project;
 
@@ -14,14 +15,14 @@ import java.util.ArrayList;
  */
 public abstract class Game 
 {
-    private final String gameName;//the title of the game
-    private ArrayList <Player> players;// the players of the game
+    private String gameName;//the title of the game
+    private ArrayList <Player> players;/**
+	 * the players of the game
+	 * @param gameName
+	 * @param playerName
+	 */
     
-    public Game(String givenName)
-    {
-        gameName = givenName;
-        players = new ArrayList();
-    }
+    
 
     /**
      * @return the gameName
@@ -48,6 +49,22 @@ public abstract class Game
     }
     
     /**
+	 * 
+	 * @param ganmeName
+	 * @param playerName
+	 */
+	public void playerLogin(String ganmeName, String playerName) {
+		// TODO - implement Game.playerLogin
+		throw new UnsupportedOperationException();
+	}
+    
+    public void startGame(String gameName, String playerName)
+    {
+        this.gameName = gameName;
+        players = new ArrayList();
+    }
+    
+    /**
      * Play the game. This might be one method or many method calls depending
      * on your game.
      */
@@ -58,6 +75,8 @@ public abstract class Game
      * player.
      */
     public abstract void declareWinner();
+
+	
 
    
     
