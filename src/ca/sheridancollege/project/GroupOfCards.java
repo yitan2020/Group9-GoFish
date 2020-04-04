@@ -18,33 +18,23 @@ public class GroupOfCards
 {
    
     //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
-    private int size;/**
+    public ArrayList <GoFishCards> cards = new ArrayList<>();
+    /**
 	 * the size of the grouping
 	 * @param givenSize
-	 */
+    * */
+    private int size;
     
-    public void distributeInitialCards(int givenSize)
-    {
+    public GroupOfCards() {
        
-        }//end metho
-    
-    
-    /**
-     * A method that will get the group of cards as an ArrayList
-     * @return the group of cards.
-     */
-    public ArrayList<Card> showCards()
-    {
-        return cards;
-    }
-    
-    public void shuffle()
-    {
-        Collections.shuffle(cards);
     }
 
-    /**
+    public GroupOfCards(ArrayList<GoFishCards> cards, int size) {
+        this.cards = cards;
+        this.size = size;
+  }
+    
+       /**
      * @return the size of the group of cards
      */
     public int getSize() {
@@ -57,6 +47,53 @@ public class GroupOfCards
     public void setSize(int givenSize) {
         size = givenSize;
     }
+
+      //generate 52 cards saved in the cards arrayList  
+    public void generateFullCardHand() {
+                for(CardSuit s: CardSuit.values())
+                {
+                    for(CardValue v: CardValue.values())
+                    {                  
+                       this.cards.add(new GoFishCards(v,s));
+                    }
+                }//end outter for
+        }//end method
+    
+    
+    public ArrayList<GoFishCards> distributeInitialCards(int givenSize)
+    {
+
+        ArrayList<GoFishCards> distributedCards = new ArrayList<>();
+        
+        for(int i=0; i< givenSize; i++) {
+            distributedCards.add(this.cards.get(i));
+        }
+        
+        for(int i=0; i< givenSize; i++) {
+            this.cards.remove(i);
+        }
+        
+        return distributedCards; 
+       
+        }//end method
+    
+    
+    /**
+     * A method that will get the group of cards as an ArrayList
+     * @return the group of cards.
+     */
+//    public void showCards()
+//    {
+//        return cards;
+//    }
+    
+    //after generate full hand cards, use this method to shuffle the cards
+    public void shuffle()
+    {
+        Collections.shuffle(this.cards);
+    }
+
+ 
     
     public void sort() {
 		// TODO - implement GroupOfCards.sort
@@ -68,10 +105,10 @@ public class GroupOfCards
 	 * @param cards
 	 * @param size
 	 */
-    public void generateCardHand(Card cards, int size) {
+    
+        
 	
-	}
+}
 
 	
     
-}//end class
