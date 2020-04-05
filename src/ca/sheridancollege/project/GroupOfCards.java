@@ -82,15 +82,26 @@ public class GroupOfCards
        
         }//end method
     
+    //insert a card to hand
+    public void insertCard(GoFishCards card) {
+        this.cards.add(card);
+    }
+    
+    //delete a card from hand
+    public void deleteCard(GoFishCards card) {
+        this.cards.remove(card);
+    }
+    
     
     /**
      * A method that will get the group of cards as an ArrayList
-     * @return the group of cards.
      */
-//    public void showCards()
-//    {
-//        return cards;
-//    }
+    public void showCards()
+    {
+        for(GoFishCards card : this.cards) {
+            System.out.println(card.toString());
+        }
+    }
     
     //after generate full hand cards, use this method to shuffle the cards
     public void shuffle()
@@ -101,7 +112,6 @@ public class GroupOfCards
     //sort the cards by value 
     public void sort() {
         Collections.sort(this.cards );
-	
     }
 
 	

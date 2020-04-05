@@ -65,8 +65,9 @@ public abstract class Game
     }
     
     /**
-     * Play the game. This might be one method or many method calls depending
-     * on your game.
+     * Play the game.This might be one method or many method calls depending
+ on your game.
+
      */
     public abstract void play();
     
