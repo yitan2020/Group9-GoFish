@@ -23,6 +23,7 @@ public class testing {
         
         ArrayList<GoFishCards> intialCards;
         intialCards = fullHand.distributeInitialCards(7);
+        fullHand.sort();
         
         
         for(GoFishCards c : fullHand.cards) {

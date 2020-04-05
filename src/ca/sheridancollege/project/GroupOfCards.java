@@ -59,21 +59,26 @@ public class GroupOfCards
                 }//end outter for
         }//end method
     
-    
+    /**
+     * 
+     * @param givenSize
+     * @return 7 initial cards 
+     */
     public ArrayList<GoFishCards> distributeInitialCards(int givenSize)
     {
 
-        ArrayList<GoFishCards> distributedCards = new ArrayList<>();
+        ArrayList<GoFishCards> initialCards = new ArrayList<>();
         
         for(int i=0; i< givenSize; i++) {
-            distributedCards.add(this.cards.get(i));
+            initialCards.add(this.cards.get(i));
         }
         
-        for(int i=0; i< givenSize; i++) {
+        for(int i=givenSize-1; i>=0; i--) {
             this.cards.remove(i);
+            System.out.println(i+"\n");
         }
-        
-        return distributedCards; 
+
+        return initialCards; 
        
         }//end method
     
@@ -93,18 +98,13 @@ public class GroupOfCards
         Collections.shuffle(this.cards);
     }
 
- 
-    
+    //sort the cards by value 
     public void sort() {
-		// TODO - implement GroupOfCards.sort
-		throw new UnsupportedOperationException();
-	}
+        Collections.sort(this.cards );
+	
+    }
 
-	/**
-	 * 
-	 * @param cards
-	 * @param size
-	 */
+	
     
         
 	
