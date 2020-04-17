@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class PlayGoFish extends Game {
    // private ArrayList<GoFishCards> userHand,cpHand,deck;
-    private ArrayList<String> books;    
+    private ArrayList<String> books = new ArrayList<String>();    
     private int userBooks=0, cpBooks=0;
 
     public PlayGoFish() {
@@ -49,29 +49,17 @@ public class PlayGoFish extends Game {
     
         do {
         userTurn(userHand, cpHand, deck);
-        
-        if(matchBook(userHand, books)>0) {
-            System.out.println("Congratulations! you got a book!");
-            userBooks = matchBook(userHand, books);
-            System.out.println("The books have been displayed so far: ");
-        displayBooks();
-        } else {
-            System.out.println("sorry, you didn't get new books.");
-        }
-        
+        System.out.println("***********************************************");
+
         System.out.println("It's computer's turn to ask you question");
         
         cpTurn(userHand, cpHand, deck);
         
+        System.out.println("***********************************************");
 
-       if(matchBook(cpHand, books)>0) {
-            System.out.println("Congratulations! computer got a book");
-           cpBooks = matchBook(cpHand, books);
-       }
-        System.out.println("The books have been displayed so far: ");
-
-        
         } while (!(deck.cards.isEmpty()) && (!cpHand.cards.isEmpty()) && (!userHand.cards.isEmpty()));
+        System.out.println("***********************************************");
+        declareWinner();
     }
 //        
 //        
@@ -133,6 +121,18 @@ public class PlayGoFish extends Game {
             System.out.println("\n cp cards are: ");
             cpHand.showCards();
             System.out.println("\n");
+            displayBooks();
+            System.out.println("\n");
+
+        }
+        
+        userBooks = matchBook(userHand, books);
+        if(userBooks>0) {
+            System.out.println("Congratulations! you got a book!");
+            System.out.println("The number of books you have so far: " +userBooks);
+            displayBooks();
+        } else {
+            System.out.println("sorry, you didn't get new books.");
         }
     }
 //    
@@ -162,6 +162,8 @@ public class PlayGoFish extends Game {
             cpHand.sort();
             cpHand.showCards();
             System.out.println("\n");
+            displayBooks();
+            System.out.println("\n");
         } else {
             System.out.println("you are lucky! user has the cards you asked for");
             System.out.printf("there are %d card in the match array before inserting", index.size());
@@ -173,13 +175,25 @@ public class PlayGoFish extends Game {
                 userHand.deleteCard(userHand.cards.get(index.get(i)));
             }
         }
+        cpBooks = matchBook(cpHand, books);
+        if(cpBooks>0) {
+            System.out.println("Congratulations! computer got a book");
+           System.out.println("The number of books you have so far: " +cpBooks);
+           displayBooks();
+            System.out.println("\n");
+       }
+        System.out.println("The books have been displayed so far: ");
     }
       
 
     public void drawCard(GroupOfCards cardsInHand, GroupOfCards deck) {
+        if(!(deck.cards.isEmpty())) {
         System.out.println("You got a new card: "+deck.cards.get(0));
         cardsInHand.insertCard(deck.cards.get(0));
         deck.deleteCard(deck.cards.get(0));
+        } else {
+            System.out.println("deck runs out card, game is over");
+        }
     
     }
 //
@@ -206,10 +220,11 @@ public class PlayGoFish extends Game {
         }
        
         for(int i=0; i<cardsInHand.cards.size();i++) {
-            int num = Collections.frequency(cardValue, cardsInHand.cards.get(i).getValue().toString());
+            String value=cardsInHand.cards.get(i).getValue().toString();
+            int num = Collections.frequency(cardValue, value);
             if(num==4) {
-                if((!books.contains(cardsInHand.cards.get(i).getValue().toString()))) {
-                    books.add(cardsInHand.cards.get(i).getValue().toString());
+                if((!books.contains(value))) {
+                    books.add(value);
                     count++;
             }
         }
@@ -233,9 +248,9 @@ public class PlayGoFish extends Game {
     @Override
     public void declareWinner() {
         if (userBooks > cpBooks) {
-         System.out.println("You won!"); 
+         System.out.println("USER You won!"); 
         } else {
-         System.out.println("You lost!");
+         System.out.println("USER You lost!");
         }
         
         
