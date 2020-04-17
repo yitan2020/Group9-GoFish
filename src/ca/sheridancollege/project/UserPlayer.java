@@ -4,6 +4,12 @@ public class UserPlayer extends Player {
 
     private int numOfWin;
     private int numOfLos;
+
+    public UserPlayer(int numOfWin, int numOfLos, String playerID) {
+        super(playerID);
+        this.numOfWin = numOfWin;
+        this.numOfLos = numOfLos;
+    }
     
     
     public int getNumOfWin() {
@@ -11,7 +17,7 @@ public class UserPlayer extends Player {
     }
 
     public void setNumOfWin(int numOfWin) {
-        this.numOfWin = numOfWin;
+        this.numOfWin += numOfWin;
     }
 
     public int getNumOfLos() {
@@ -19,7 +25,7 @@ public class UserPlayer extends Player {
     }
 
     public void setNumOfLos(int numOfLos) {
-        this.numOfLos = numOfLos;
+        this.numOfLos += numOfLos;
     }
     
     public UserPlayer (String name, int numOfWin, int numOfLos) {
@@ -28,10 +34,7 @@ public class UserPlayer extends Player {
         this.numOfLos = numOfLos;        
     }
     
-    @Override
-    public void play() {
-        
-    }
+
 
     public void storeWinResult() {
         this.numOfWin += 1;   
@@ -43,7 +46,13 @@ public class UserPlayer extends Player {
     
     public void displayResult() {
         String format ="%s has won %d games and lost %d games so far!";
-        System.out.println(String.format(format, this.numOfWin, this.numOfLos));
+        System.out.println(String.format(format, getPlayerID(),this.numOfWin, this.numOfLos));
+    }
+
+    @Override
+    public boolean play() {
+       PlayGoFish game = new PlayGoFish();
+       return game.play();
     }
 
 }

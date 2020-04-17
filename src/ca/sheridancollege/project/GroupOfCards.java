@@ -25,6 +25,12 @@ public class GroupOfCards
        
     }
 
+    public GroupOfCards(int size, ArrayList<GoFishCards> cards) {
+        this.size = size;
+        this.cards = cards;
+    }
+    
+
        /**
      * @return the size of the group of cards
      */

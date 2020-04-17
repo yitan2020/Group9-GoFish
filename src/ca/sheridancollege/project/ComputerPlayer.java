@@ -7,7 +7,8 @@ public class ComputerPlayer extends Player {
     }
     
     @Override
-    public void play() {
+    public boolean play() {
+        return false;
         
         
     }

@@ -19,8 +19,7 @@ public class PlayGoFish extends Game {
 
 
     @Override
-
-    public void play() {
+    public boolean play() {
         GroupOfCards deck = new GroupOfCards();
         GroupOfCards userHand = new GroupOfCards();
         GroupOfCards cpHand = new GroupOfCards();
@@ -59,16 +58,9 @@ public class PlayGoFish extends Game {
 
         } while (!(deck.cards.isEmpty()) && (!cpHand.cards.isEmpty()) && (!userHand.cards.isEmpty()));
         System.out.println("***********************************************");
-        declareWinner();
+        return declareWinner();
     }
-//        
-//        
-//       declareWinner();
-//            
-//            
-//        
-//    }
-//    
+   
     // in userTurn, the user asks the computer a value, and check the validation of the question, 
     // if computer has the cards, user will insert the cards from computer and computer will delete the same cards
     //if computer has no cards, the user will draw a card from the deck. 
@@ -246,14 +238,17 @@ public class PlayGoFish extends Game {
 //
 //
     @Override
-    public void declareWinner() {
+    public boolean declareWinner() {
+        boolean result;
         if (userBooks > cpBooks) {
          System.out.println("USER You won!"); 
+         result = true;
         } else {
          System.out.println("USER You lost!");
+         result = false;
         }
         
-        
+        return result;
     }
 }
 //

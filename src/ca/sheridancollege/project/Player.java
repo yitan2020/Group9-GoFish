@@ -42,7 +42,8 @@ public abstract class Player
     /**
      * The method to be instantiated when you subclass the Player class
      * with your specific type of Player and filled in with logic to play your game.
+     * @return 
      */
-    public abstract void play();
+    public abstract boolean play();
     
 }
