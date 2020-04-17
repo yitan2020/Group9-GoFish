@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
+/**
+ * 
+ * @author Yi Tan <tan5@sheridan.desire2learn.com>
+ * This class is used to implement the GoFish game 
+ * extends the Game class 
+ */
 
 
 public class PlayGoFish extends Game {
@@ -33,6 +39,7 @@ public class PlayGoFish extends Game {
         System.out.println("cp initial cards are: ");
         cpHand.showCards();
         System.out.println("\n ");
+        cpBooks = matchBook(cpHand, books);
         
         
         userHand.distributeInitialCards(7, deck.cards);
@@ -40,6 +47,7 @@ public class PlayGoFish extends Game {
         System.out.println("user initial cards are: ");
         userHand.showCards();
         System.out.println("\n");
+        userBooks = matchBook(userHand, books);
 
 
         System.out.println("\n after get the initial cards, books user has: "+userBooks);
@@ -69,8 +77,9 @@ public class PlayGoFish extends Game {
         String req_value;
         ArrayList<Integer> index = new ArrayList<Integer>();
         index.clear();
-        System.out.printf("there are %d card in the match array", index.size());
+        //System.out.printf("there are %d card in the match array", index.size());
         
+        //get a value of the card from user and validate the value
         do {
             System.out.println("\n Please ask computer a value of the card(using capital words): ");
             Scanner input = new Scanner (System.in);
@@ -86,42 +95,51 @@ public class PlayGoFish extends Game {
         //check if the computer has the cards that the user asks for
         index = matchCards(req_value, cpHand, index);
         
+        //if computer doesn't have the card, user draw a card from the deck and display the cards in hand
         if(index.isEmpty()) {
+            System.out.println("************************************************************");
             System.out.println("Computer doesn't have the card you asked for. ");
             System.out.println("You can draw a card");
+            System.out.println("You got a new card: "+deck.cards.get(0));
             drawCard(userHand, deck);
+            System.out.println("************************************************************");
             System.out.println("The cards in your hands are: ");
             userHand.sort();
             userHand.showCards();
             System.out.println("\n");
             
+            // if computer has the cards, will pass the cards to user 
         } else {
             System.out.println("you are lucky! computer has the cards you asked for");
-            System.out.printf("there are %d card in the match array before inserting", index.size());
+            //System.out.printf("there are %d card in the match array before inserting", index.size());
             for(int i : index) {
                 userHand.insertCard(cpHand.cards.get(i));
             }
-            System.out.printf("there are %d card in the match array after inserting", index.size());
+            //System.out.printf("there are %d card in the match array after inserting", index.size());
             
             for(int i=index.size()-1; i>=0; i--) {
                 cpHand.deleteCard(cpHand.cards.get(index.get(i)));
             }
+            System.out.println("************************************************************");
             System.out.println("now your cards in hand are: ");
             userHand.sort();
             userHand.showCards();
-            System.out.println("\n");
-            System.out.println("\n cp cards are: ");
-            cpHand.showCards();
+            //System.out.println("\n cp cards are: ");
+            //cpHand.showCards();
+            System.out.println("************************************************************");
             System.out.println("\n");
             displayBooks();
-            System.out.println("\n");
 
         }
         
+        //after either draw a card or get the cards from computer, match books 
         userBooks = matchBook(userHand, books);
         if(userBooks>0) {
+            System.out.println("************************************************************");
             System.out.println("Congratulations! you got a book!");
-            System.out.println("The number of books you have so far: " +userBooks);
+            System.out.println("The number of books user have so far: " +userBooks);
+            System.out.println("************************************************************");
+            System.out.println("The books displayed are : ");
             displayBooks();
         } else {
             System.out.println("sorry, you didn't get new books.");
@@ -147,40 +165,45 @@ public class PlayGoFish extends Game {
 
         //check if the USER has the cards that the CP asks for
        index = matchCards(req_value, userHand, index);
+       //if user doesn't have the card, computer can draw a card 
         if(index.isEmpty()) {
-            System.out.println("user doesn't have the card you asked for.");
+            //System.out.println("user doesn't have the card you asked for.");
+            //System.out.println("You can draw a card");
             drawCard(cpHand,deck);
-            System.out.println("CP, The cards in your hands are: ");
+            //System.out.println("CP, The cards in your hands are: ");
             cpHand.sort();
-            cpHand.showCards();
+            //cpHand.showCards();
             System.out.println("\n");
-            displayBooks();
-            System.out.println("\n");
+
         } else {
+            //if the user has the cards computer asks for, pass to computer
             System.out.println("you are lucky! user has the cards you asked for");
-            System.out.printf("there are %d card in the match array before inserting", index.size());
+            //System.out.printf("there are %d card in the match array before inserting", index.size());
             for(int i : index) {
                 cpHand.insertCard(userHand.cards.get(i));
             }
-            System.out.printf("there are %d card in the match array before inserting", index.size());
+           // System.out.printf("there are %d card in the match array before inserting", index.size());
             for(int i=index.size()-1; i>=0; i--) {
                 userHand.deleteCard(userHand.cards.get(index.get(i)));
             }
+            System.out.println("************************************************************");
+            System.out.println("The cards user have are: ");
+            userHand.showCards();
         }
         cpBooks = matchBook(cpHand, books);
         if(cpBooks>0) {
             System.out.println("Congratulations! computer got a book");
-           System.out.println("The number of books you have so far: " +cpBooks);
+            System.out.println("************************************************************");
+           System.out.println("The number of books computer have so far: " +cpBooks);
            displayBooks();
             System.out.println("\n");
        }
-        System.out.println("The books have been displayed so far: ");
+        
     }
       
 
     public void drawCard(GroupOfCards cardsInHand, GroupOfCards deck) {
         if(!(deck.cards.isEmpty())) {
-        System.out.println("You got a new card: "+deck.cards.get(0));
         cardsInHand.insertCard(deck.cards.get(0));
         deck.deleteCard(deck.cards.get(0));
         } else {

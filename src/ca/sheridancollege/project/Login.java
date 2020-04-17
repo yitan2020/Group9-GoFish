@@ -23,7 +23,7 @@ public class Login {
         System.out.println("Please enter your user ID"); 
         Scanner input = new Scanner(System.in);
         userID = input.nextLine();
-        } while(userID.length() >= 5);
+        } while(userID.length() < 5);
 
         return userID;
     }

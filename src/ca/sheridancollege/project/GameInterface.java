@@ -9,6 +9,7 @@ import java.util.Scanner;
 /**
  *
  * @author Yi Tan <tan5@sheridan.desire2learn.com>
+ * this class create the instance of player and provide menu to interact with user to start the game
  */
 public class GameInterface {
 
@@ -28,12 +29,7 @@ public class GameInterface {
             boolean flag = true;
             Menu(flag, user1);
         }
-        
-     
-            
 
-
-        
 
     }
     

@@ -2,7 +2,11 @@ package ca.sheridancollege.project;
 
 import static ca.sheridancollege.project.PlayGoFish.matchCards;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Yi Tan <tan5@sheridan.desire2learn.com>
+ * This class is used to validate if the question user asked is valid
+ */
 
 public class QuestionValidator {
     private String req_value;
