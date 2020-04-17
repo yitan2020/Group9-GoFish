@@ -40,7 +40,7 @@ public class GoFishCards extends Card implements Comparable<GoFishCards> {
     
     @Override
     public String toString() {
-        return this.value + " " +this.suit +"\n";
+        return this.value + " " +this.suit+",";
     }
 
     @Override

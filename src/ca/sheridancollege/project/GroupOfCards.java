@@ -16,29 +16,20 @@ import java.util.Collections;
  */
 public class GroupOfCards 
 {
-   
+   private int size;
     //The group of cards, stored in an ArrayList
     public ArrayList <GoFishCards> cards = new ArrayList<>();
-    /**
-	 * the size of the grouping
-	 * @param givenSize
-    * */
-    private int size;
+   
     
     public GroupOfCards() {
        
     }
 
-    public GroupOfCards(ArrayList<GoFishCards> cards, int size) {
-        this.cards = cards;
-        this.size = size;
-  }
-    
        /**
      * @return the size of the group of cards
      */
     public int getSize() {
-        return size;
+        return this.cards.size();
     }
 
     /**
@@ -64,21 +55,16 @@ public class GroupOfCards
      * @param givenSize
      * @return 7 initial cards 
      */
-    public ArrayList<GoFishCards> distributeInitialCards(int givenSize)
+    public void distributeInitialCards(int givenSize, ArrayList <GoFishCards> deck)
     {
-
-        ArrayList<GoFishCards> initialCards = new ArrayList<>();
         
         for(int i=0; i< givenSize; i++) {
-            initialCards.add(this.cards.get(i));
+            this.cards.add(deck.get(i));
         }
         
         for(int i=givenSize-1; i>=0; i--) {
-            this.cards.remove(i);
-            System.out.println(i+"\n");
+            deck.remove(i);
         }
-
-        return initialCards; 
        
         }//end method
     
@@ -89,6 +75,7 @@ public class GroupOfCards
     
     //delete a card from hand
     public void deleteCard(GoFishCards card) {
+        System.out.println("this card is removed :"+card.toString());
         this.cards.remove(card);
     }
     
@@ -99,7 +86,7 @@ public class GroupOfCards
     public void showCards()
     {
         for(GoFishCards card : this.cards) {
-            System.out.println(card.toString());
+            System.out.print(card.toString()+" ");
         }
     }
     
